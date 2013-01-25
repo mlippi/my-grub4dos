@@ -1,0 +1,74 @@
+gfxmenu (hd0,0)/grub4dos/Elisha2.gz
+timeout 30
+default /default
+
+title Проверка оперативной памяти Memtest86+
+map (hd0,0)/grub4dos/iso/mt420.iso (hd32)
+map --hook
+root (hd32)
+chainloader (hd32)
+boot
+ 
+title Проверка жесткого диска Victoria 3.5
+map (hd0,0)/grub4dos/iso/vcr35r.iso (hd32)
+map --hook
+root (hd32)
+chainloader (hd32)
+boot
+
+title Acronis
+map --mem /grub4dos/firadisk.ima (fd0)
+map (hd0,0)/grub4dos/iso/acronis.iso (hd32)
+map --hook
+root (hd32)
+chainloader (hd32)
+boot
+
+title Windows_XP_Live_CD_Mini
+map (hd0,0)/grub4dos/iso/Windows_XP_Live_CD_Mini.iso (hd32)
+map --hook
+root (hd32)
+chainloader (hd32)
+boot
+
+title xubuntu-12.10-desktop-i386
+map /grub4dos/iso/xubuntu-12.10-desktop-i386.iso (hd32)
+map --hook
+root (hd32)
+kernel /casper/vmlinuz iso-scan/filename=/grub4dos/iso/xubuntu-12.10-desktop-i386.iso boot=casper quiet splash -- locale=en_US
+initrd /casper/initrd.lz
+
+title xubuntu-12.10-desktop-amd64
+map /grub4dos/iso/xubuntu-12.10-desktop-amd64.iso (hd32)
+map --hook
+root (hd32)
+kernel /casper/vmlinuz iso-scan/filename=/grub4dos/iso/xubuntu-12.10-desktop-amd64.iso boot=casper quiet splash -- locale=en_US
+initrd /casper/initrd.lz
+
+title Fedora-17-x86_64-Live-XFCE
+find --set-root /fedora-17-x86_64-live-xfce/vmlinuz0
+kernel /fedora-17-x86_64-live-xfce/vmlinuz0 root=live:UUID=7ACE-551C live_dir=/fedora-17-x86_64-live-xfce rootfstype=vfat rw liveimg quiet rhgb rd_NO_LUKS rd_NO_MD rd_NO_DM
+initrd /fedora-17-x86_64-live-xfce/initrd0.img
+
+title Fedora-17-i686-Live-XFCE
+find --set-root /fedora-17-i686-live-xfce/vmlinuz0
+kernel /fedora-17-i686-live-xfce/vmlinuz0 root=live:UUID=7ACE-551C live_dir=/fedora-17-i686-live-xfce rootfstype=vfat rw liveimg quiet rhgb rd_NO_LUKS rd_NO_MD rd_NO_DM
+initrd /fedora-17-i686-live-xfce/initrd0.img
+
+title DrWeb LiveCD
+root (hd0,0)
+kernel /boot/vmlinuz ID=blZAUmR1HjiFrUb5 root=/dev/ram0 init=/linuxrc init_opts=4 quiet dokeymap looptype=squashfs loop=/boot/module/white.mo usbroot slowusb initrd=/boot/initrd vga=791 splash=silent,theme:drweb CONSOLE=/dev/tty1
+initrd /boots/initrd
+
+title Kaspersky Rescue Disk
+find --set-root --ignore-cd /rescue/rescueusb.iso
+map /rescue/rescueusb.iso (0xff) || map --mem /rescue/rescueusb.iso (0xff)
+map --hook
+chainloader (0xff)
+
+title Start PLoP boot manager
+root (hd0,0)
+kernel /grub4dos/plpbt.bin
+
+title Перезагрузка компьютера
+reboot
