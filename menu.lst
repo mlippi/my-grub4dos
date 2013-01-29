@@ -2,6 +2,14 @@ gfxmenu (hd0,0)/grub4dos/Elisha2.gz
 timeout 30
 default /default
 
+title Загрузка с жёсткого диска
+find --set-root --ignore-floppies --ignore-cd /bootmgr || find --set-root --ignore-floppies --ignore-cd /ntldr
+map (hd0) (hd1)
+map (hd1) (hd0)
+map --hook
+rootnoverify (hd0)
+chainloader (hd0)+1
+
 title Проверка оперативной памяти Memtest86+
 map (hd0,0)/grub4dos/iso/mt420.iso (hd32)
 map --hook
@@ -31,29 +39,20 @@ root (hd32)
 chainloader (hd32)
 boot
 
+title WindowsXPproSP3_x86
+map --mem /iso/firadisk.IMA (fd0)
+map --mem /iso/win-xp.iso (0xFF)
+map (hd0) (hd1)
+map (hd1) (hd0)
+map --hook
+chainloader (0xFF)
+
 title xubuntu-12.10-desktop-i386
 map /grub4dos/iso/xubuntu-12.10-desktop-i386.iso (hd32)
 map --hook
 root (hd32)
 kernel /casper/vmlinuz iso-scan/filename=/grub4dos/iso/xubuntu-12.10-desktop-i386.iso boot=casper quiet splash -- locale=en_US
 initrd /casper/initrd.lz
-
-title xubuntu-12.10-desktop-amd64
-map /grub4dos/iso/xubuntu-12.10-desktop-amd64.iso (hd32)
-map --hook
-root (hd32)
-kernel /casper/vmlinuz iso-scan/filename=/grub4dos/iso/xubuntu-12.10-desktop-amd64.iso boot=casper quiet splash -- locale=en_US
-initrd /casper/initrd.lz
-
-title Fedora-17-x86_64-Live-XFCE
-find --set-root /fedora-17-x86_64-live-xfce/vmlinuz0
-kernel /fedora-17-x86_64-live-xfce/vmlinuz0 root=live:UUID=7ACE-551C live_dir=/fedora-17-x86_64-live-xfce rootfstype=vfat rw liveimg quiet rhgb rd_NO_LUKS rd_NO_MD rd_NO_DM
-initrd /fedora-17-x86_64-live-xfce/initrd0.img
-
-title Fedora-17-i686-Live-XFCE
-find --set-root /fedora-17-i686-live-xfce/vmlinuz0
-kernel /fedora-17-i686-live-xfce/vmlinuz0 root=live:UUID=7ACE-551C live_dir=/fedora-17-i686-live-xfce rootfstype=vfat rw liveimg quiet rhgb rd_NO_LUKS rd_NO_MD rd_NO_DM
-initrd /fedora-17-i686-live-xfce/initrd0.img
 
 title DrWeb LiveCD
 root (hd0,0)
