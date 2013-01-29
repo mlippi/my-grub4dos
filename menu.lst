@@ -10,14 +10,14 @@ map --hook
 rootnoverify (hd0)
 chainloader (hd0)+1
 
-title Проверка оперативной памяти Memtest86+
+title Memtest86+
 map (hd0,0)/grub4dos/iso/mt420.iso (hd32)
 map --hook
 root (hd32)
 chainloader (hd32)
 boot
  
-title Проверка жесткого диска Victoria 3.5
+title Victoria 3.5
 map (hd0,0)/grub4dos/iso/vcr35r.iso (hd32)
 map --hook
 root (hd32)
@@ -32,14 +32,14 @@ root (hd32)
 chainloader (hd32)
 boot
 
-title Windows_XP_Live_CD_Mini
+title Windows XP LiveCD Mini
 map (hd0,0)/grub4dos/iso/Windows_XP_Live_CD_Mini.iso (hd32)
 map --hook
 root (hd32)
 chainloader (hd32)
 boot
 
-title WindowsXPproSP3_x86
+title Windows XP Pro SP3 x86
 map --mem /iso/firadisk.IMA (fd0)
 map --mem /iso/win-xp.iso (0xFF)
 map (hd0) (hd1)
