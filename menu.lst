@@ -1,4 +1,4 @@
-gfxmenu (hd0,0)/grub4dos/Elisha2.gz
+gfxmenu (hd0,0)/boot/beer.gz
 timeout 30
 default /default
 
@@ -11,50 +11,50 @@ rootnoverify (hd0)
 chainloader (hd0)+1
 
 title Memtest86+
-map (hd0,0)/grub4dos/iso/mt420.iso (hd32)
+map (hd0,0)/boot/iso/mt420.iso (hd32)
 map --hook
 root (hd32)
 chainloader (hd32)
 boot
  
 title Victoria 3.5
-map (hd0,0)/grub4dos/iso/vcr35r.iso (hd32)
+map (hd0,0)/boot/iso/vcr35r.iso (hd32)
 map --hook
 root (hd32)
 chainloader (hd32)
 boot
 
 title Acronis
-map --mem /grub4dos/firadisk.ima (fd0)
-map (hd0,0)/grub4dos/iso/acronis.iso (hd32)
+map --mem /boot/firadisk.ima (fd0)
+map (hd0,0)/boot/iso/acronis.iso (hd32)
 map --hook
 root (hd32)
 chainloader (hd32)
 boot
 
-title Windows XP LiveCD Mini
-map (hd0,0)/grub4dos/iso/Windows_XP_Live_CD_Mini.iso (hd32)
+title Windows XP Live CD Mini
+map (hd0,0)/boot/iso/Windows_XP_Live_CD_Mini.iso (hd32)
 map --hook
 root (hd32)
 chainloader (hd32)
 boot
 
-title Windows XP Pro SP3 x86
-map --mem /iso/firadisk.IMA (fd0)
-map --mem /iso/win-xp.iso (0xFF)
+title Windows XP Pro SP3 x86 Ru
+map --mem /boot/iso/firadisk.IMA (fd0)
+map --mem /boot/iso/win-xp.iso (0xFF)
 map (hd0) (hd1)
 map (hd1) (hd0)
 map --hook
 chainloader (0xFF)
 
 title xubuntu-12.10-desktop-i386
-map /grub4dos/iso/xubuntu-12.10-desktop-i386.iso (hd32)
+map /boot/iso/xubuntu-12.10-desktop-i386.iso (hd32)
 map --hook
 root (hd32)
-kernel /casper/vmlinuz iso-scan/filename=/grub4dos/iso/xubuntu-12.10-desktop-i386.iso boot=casper quiet splash -- locale=en_US
+kernel /casper/vmlinuz iso-scan/filename=/boot/iso/xubuntu-12.10-desktop-i386.iso boot=casper quiet splash -- locale=en_US
 initrd /casper/initrd.lz
 
-title DrWeb LiveCD
+title DrWeb Live CD
 root (hd0,0)
 kernel /boot/vmlinuz ID=blZAUmR1HjiFrUb5 root=/dev/ram0 init=/linuxrc init_opts=4 quiet dokeymap looptype=squashfs loop=/boot/module/white.mo usbroot slowusb initrd=/boot/initrd vga=791 splash=silent,theme:drweb CONSOLE=/dev/tty1
 initrd /boots/initrd
@@ -67,7 +67,7 @@ chainloader (0xff)
 
 title Start PLoP boot manager
 root (hd0,0)
-kernel /grub4dos/plpbt.bin
+kernel /boot/plpbt.bin
 
 title Перезагрузка компьютера
 reboot
