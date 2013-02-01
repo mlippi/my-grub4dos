@@ -1,4 +1,4 @@
-gfxmenu (hd0,0)/boot/beer.gz
+gfxmenu (hd0,0)/boot/themes/beer.gz
 timeout 30
 default /default
 
@@ -39,13 +39,18 @@ root (hd32)
 chainloader (hd32)
 boot
 
-title Windows XP Pro SP3 x86 Ru
+title Windows XP Professional SP3 x86 Ru
 map --mem /boot/iso/firadisk.IMA (fd0)
 map --mem /boot/iso/win-xp.iso (0xFF)
 map (hd0) (hd1)
 map (hd1) (hd0)
 map --hook
 chainloader (0xFF)
+
+title Windows 7 ultimate SP1 x64
+map /boot/iso/en_windows_7_ultimate_with_sp1_x64_dvd_u_677332.iso (hd32)
+map --hook
+chainloader (hd32)
 
 title xubuntu-12.10-desktop-i386
 map /boot/iso/xubuntu-12.10-desktop-i386.iso (hd32)
@@ -65,9 +70,14 @@ map /rescue/rescueusb.iso (0xff) || map --mem /rescue/rescueusb.iso (0xff)
 map --hook
 chainloader (0xff)
 
-title Start PLoP boot manager
-root (hd0,0)
-kernel /boot/plpbt.bin
+title AntiWinLocker 3.0
+map (hd0,0)/boot/iso/awl.iso (hd32)
+map --hook
+chainloader (hd32)
+boot
 
 title Перезагрузка компьютера
 reboot
+
+title Завершение работы
+halt
